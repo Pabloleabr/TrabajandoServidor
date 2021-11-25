@@ -42,11 +42,11 @@
     @enderror
 </div>
 <div class="mb-6">
-    <label for="departamento"
-        class="text-sm font-medium text-gray-900 block mb-2 @error('departamento') text-red-500 @enderror">
+    <label for="departId"
+        class="text-sm font-medium text-gray-900 block mb-2 @error('departId') text-red-500 @enderror">
         departamento
     </label>
-    <input type="text" name="departamento" id="departamento"
+    <input type="text" name="departId" id="departId"
         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('departamento') border-red-500 @enderror"
         value="{{ old('departId', $departId) }}">
     @error('departId')

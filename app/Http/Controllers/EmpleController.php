@@ -60,7 +60,7 @@ class EmpleController extends Controller
 
         $this->findDepart($validados['departId']);
 
-        DB::table('depart')->insert([
+        DB::table('emple')->insert([
             'nombre' => $validados['nombre'],
             'fecha_alt' => $validados['fechaAlt'],
             'salario' => $validados['salario'],
@@ -98,11 +98,9 @@ class EmpleController extends Controller
 
     private function findDepart($id)
     {
-        $empleados = DB::select('SELECT d.denominacion
-                                   FROM emple e
-                                   JOIN depart d
-                                     ON depart_id = d.id
-                                  WHERE d.id = ?', [$id]);
+        $empleados = DB::select('SELECT denominacion
+                                   FROM depart
+                                  WHERE id = ?', [$id]);
 
         abort_unless($empleados, 404);
 
