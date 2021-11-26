@@ -5,7 +5,8 @@
                 :nombre="''"
                 :fechaAlt="''"
                 :salario="''"
-                :departId="''"/>
+                :departId="''"
+                :departamentos="$departamentos"/>
         </form>
 
 

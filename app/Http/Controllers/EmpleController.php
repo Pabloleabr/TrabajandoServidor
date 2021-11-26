@@ -50,7 +50,12 @@ class EmpleController extends Controller
 
     public function create()
     {
-        return view('emple.create');
+        $departamentos = DB::table('depart')
+                        ->select('denominacion','id')
+                        ->get();
+        return view('emple.create',[
+            'departamentos' => $departamentos,
+        ]);
     }
 
 
@@ -69,6 +74,35 @@ class EmpleController extends Controller
 
         return redirect('/emple')
             ->with('success', 'empleado insertado con éxito.');
+    }
+
+    public function edit($id)
+    {
+        $emple = $this->findEmpleado($id);
+        $departamentos = DB::table('depart')
+                        ->select('denominacion','id')
+                        ->get();
+
+        return view('depart.edit', [
+            'emple' => $emple,
+            'departamentos' => $departamentos,
+        ]);
+    }
+
+    public function update($id)
+    {
+        $validados = $this->validar();
+        $emple = $this->findEmpleado($id);
+
+        DB::table('emple')->where('id', '=', $id)
+        ->update([
+            'nombre' => $validados['nombre'],
+            'fecha_alt' => $validados['fechaAlt'],
+            'salario' => $validados['salario'],
+            'depart_id' => $validados['departId']
+        ]);
+        return redirect('/emple')
+        ->with('success', 'empleado actualizado con exito');
     }
 
     private function findEmpleado($id)
