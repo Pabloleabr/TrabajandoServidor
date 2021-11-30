@@ -83,7 +83,7 @@ class EmpleController extends Controller
                         ->select('denominacion','id')
                         ->get();
 
-        return view('depart.edit', [
+        return view('emple.edit', [
             'emple' => $emple,
             'departamentos' => $departamentos,
         ]);
